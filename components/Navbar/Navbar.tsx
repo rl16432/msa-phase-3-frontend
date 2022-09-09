@@ -12,14 +12,28 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import Login from './Login/Login';
+import Login from '../Login/Login';
+import Link from 'next/link';
+import NavbarMenu from './NavbarMenu';
+import { selectUserTeam } from '../Login/loginSlice';
+import { useSelector } from 'react-redux'
+import { SxProps } from '@mui/material';
 
-const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const userTeam = useSelector(selectUserTeam)
+
+  const navLinkStyle: SxProps = {
+    my: 2,
+    alignContent: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    color: 'white',
+    display: 'flex'
+  }
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -69,7 +83,7 @@ const Navbar = (): JSX.Element => {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            <NavbarMenu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -87,19 +101,28 @@ const Navbar = (): JSX.Element => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {userTeam != null
+                ?
+                <Link href={`/team/${userTeam?.userName}`} passHref>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" color="white">My Team</Typography>
+                  </MenuItem>
+                </Link>
+                : null
+              }
+              <Link href={`/trainers`} passHref>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" color="white">Trainers</Typography>
                 </MenuItem>
-              ))}
-            </Menu>
+              </Link>
+            </NavbarMenu>
           </Box>
           <CatchingPokemonIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -113,18 +136,31 @@ const Navbar = (): JSX.Element => {
           >
             PokeTeam
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, 
-          justifyContent: "center", alignItems: "middle" }}>
-            {pages.map((page) => (
+          <Box sx={{
+            flexGrow: 1, display: { xs: 'none', md: 'flex' },
+            justifyContent: "center", alignItems: "middle"
+          }}>
+            {userTeam != null
+              ?
+              <Link href={`/team/${userTeam?.userName}`} passHref>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={navLinkStyle}
+                >
+                  My Team
+                </Button>
+              </Link>
+              : null
+            }
+            <Link href={`/trainers`} passHref>
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={navLinkStyle}
               >
-                {page}
+                Trainers
               </Button>
-            ))}
-            <Login sx={{my: 2, mr: 2, display: 'block'}}/>
+            </Link>
+            <Login sx={{ my: 2, mr: 2, display: 'block' }} />
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -157,7 +193,7 @@ const Navbar = (): JSX.Element => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 };
 export default Navbar;

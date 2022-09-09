@@ -2,6 +2,12 @@ import axios from "axios"
 import { Pokemon, User } from "../models/UserModels"
 const BASE_URL = "https://localhost:7246"
 
+const getAllUsers = (): Promise<User[]> => {
+  return axios
+    .get(`${BASE_URL}/user`)
+    .then(res => res.data)
+}
+
 const getUserPokemon = async (userName: string): Promise<User> => {
   return axios
     .get(
@@ -11,6 +17,7 @@ const getUserPokemon = async (userName: string): Promise<User> => {
 }
 
 const exports = {
+  getAllUsers,
   getUserPokemon
 }
 

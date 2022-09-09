@@ -4,8 +4,7 @@ import { User, Pokemon } from '../models/UserModels'
 import { useEffect, useState } from 'react'
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Container, Card, Collapse, CardMedia, CardContent, Avatar, Box } from '@mui/material/'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Navbar from '../components/Navbar'
-import Login from '../components/Login/Login'
+import Navbar from '../components/Navbar/Navbar'
 
 type PokemonCardProps = {
   pokemon?: Pokemon
