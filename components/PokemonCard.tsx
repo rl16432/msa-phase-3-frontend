@@ -75,7 +75,7 @@ const PokemonCard = ({ readOnly, userName, pokemon }: PokemonCardProps): JSX.Ele
           <AccordionDetails>
             <Grid container>
               {stats.map((stat, idx) => (
-                <Grid item xs={6}>
+                <Grid key={stat} item xs={6}>
                   <Typography>
                     {statsCommonName[idx]}: {pokemon != null ? pokemon[stat] : null}
                   </Typography>

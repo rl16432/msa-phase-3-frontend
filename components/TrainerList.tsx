@@ -94,7 +94,7 @@ const TrainerList = (props: BoxProps) => {
             ?
             <Grid container spacing={2}>
               {selected.pokemon.map(pokemon =>
-                <Grid key={pokemon.pokemonId} item sx={{ p: "0 !important", mt: 2 }} xs={6} md={4}>
+                <Grid key={pokemon.id} item sx={{ p: "0 !important", mt: 2 }} xs={6} md={4}>
                   <Box
                     component="img"
                     sx={{

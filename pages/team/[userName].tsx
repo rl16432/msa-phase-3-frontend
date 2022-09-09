@@ -14,20 +14,19 @@ const PokemonTeam = () => {
   // const dispatch = useDispatch()
   const loggedInUserTeam = useSelector(selectUserTeam)
   const readOnly = userName !== loggedInUserTeam?.userName
-  const [routeUserTeam, setRouteUserTeam] = useState<User>();
+  const [routeUserTeam, setRouteUserTeam] = useState<User>()
 
   useEffect(() => {
     if (typeof userName === "string") {
       userService.getUserPokemon(userName)
         .then(res => {
-          console.log('hihihi', res)
           setRouteUserTeam(res)
         })
         .catch(err => {
           console.log(err)
         })
     }
-  }, [userName])
+  }, [userName, loggedInUserTeam])
 
   return (
     <>

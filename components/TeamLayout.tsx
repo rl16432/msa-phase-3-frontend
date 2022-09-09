@@ -88,7 +88,12 @@ const TeamLayout = ({ readOnly, userName, pokemons }: TeamLayoutProps) => {
             : null
         }
         {pokemons.map(pokemon =>
-          <PokemonCard readOnly={readOnly} userName={userName?.toString() || ""} pokemon={pokemon} />
+          <PokemonCard
+            key={pokemon.id}
+            readOnly={readOnly}
+            userName={userName?.toString() || ""}
+            pokemon={pokemon}
+          />
         )}
       </Container>
     </>

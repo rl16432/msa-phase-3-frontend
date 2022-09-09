@@ -16,9 +16,7 @@ import Link from 'next/link';
 import NavbarMenu from './NavbarMenu';
 import { selectUserTeam } from '../Login/loginSlice';
 import { useSelector } from 'react-redux'
-import { Backdrop, SxProps } from '@mui/material';
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { SxProps } from '@mui/material';
 
 const Navbar = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -165,8 +163,8 @@ const Navbar = (): JSX.Element => {
               mr: 2
             }} />
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+          <Box sx={{ flexGrow: 0, display: {md: "none"} }}>
+            <Tooltip title="Login">
               <IconButton onClick={handleToggleLoginMenu} sx={{ p: 0 }}>
                 <AccountCircle sx={{ color: "white" }} />
               </IconButton>

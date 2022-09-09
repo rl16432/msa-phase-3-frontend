@@ -1,5 +1,5 @@
 export type Pokemon = {
-  pokemonId: number
+  id: number
   pokemonNo: number
   name: string
   hp: number
