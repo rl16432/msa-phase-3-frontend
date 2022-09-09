@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import userServices from '../services/UserServices'
 import Box, { BoxProps } from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
@@ -8,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
-import { ListItemIcon, Modal, Typography, Grid, CardMedia } from '@mui/material';
+import { useTheme, SxProps, ListItemIcon, Modal, Typography, Grid, CardMedia } from '@mui/material';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { User } from '../models/UserModels';
 
@@ -65,16 +64,22 @@ const TrainerList = (props: BoxProps) => {
   }
 
   const TrainerModal = () => {
-    const style = {
+    const modalStyle : SxProps = {
       position: 'absolute' as 'absolute',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: 400,
+      width: {
+        xs: 300,
+        sm: 400,
+        md: 600
+      },
       bgcolor: 'background.paper',
       border: '1px solid #000',
       boxShadow: 24,
-      py: 1
+      py: 1,
+      px: 2,
+      textAlign: "center"
     };
 
     return (
@@ -84,23 +89,33 @@ const TrainerList = (props: BoxProps) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Grid container spacing={2}>
-            {selected?.pokemon.map(pokemon =>
-              <Grid key={pokemon.pokemonId} item xs={6}>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={pokemon?.image}
-                  title={pokemon?.name}
-                />
-              </Grid>
-            )}
-          </Grid>
+        <Box sx={modalStyle}>
+          {selected != null && selected?.pokemon.length > 0
+            ?
+            <Grid container spacing={2}>
+              {selected.pokemon.map(pokemon =>
+                <Grid key={pokemon.pokemonId} item sx={{ p: "0 !important", mt: 2 }} xs={6} md={4}>
+                  <Box
+                    component="img"
+                    sx={{
+                      maxWidth: {
+                        xs: 150,
+                        sm: 200,
+                      }
+                    }}
+                    src={pokemon?.image}
+                    alt={pokemon?.name}
+                  />
+                </Grid>
+              )}
+            </Grid>
+            : <Typography>No Pokemon</Typography>
+          }
         </Box>
       </Modal>
     )
   }
+
   return (
     <>
       <Box

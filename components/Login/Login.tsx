@@ -1,5 +1,5 @@
 import { Button, BoxProps, Typography, Alert, Box } from "@mui/material"
-import React, { useState } from "react"
+import React, { useState, ChangeEvent } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUserTeam, setUserTeam } from "./loginSlice"
 import userService from '../../services/UserServices'
@@ -24,6 +24,7 @@ const Login = (props: BoxProps) => {
       await userService.getUserPokemon(userName)
         .then(res => {
           dispatch(setUserTeam(res))
+          setUserName('')
         })
         .catch(err => {
           displayAlert("Invalid username")
@@ -40,7 +41,7 @@ const Login = (props: BoxProps) => {
     <>
       {userTeam == null
         ?
-        <Box sx={{ ...props.sx, ml: "auto", display: "flex", flexDirection: "row" }}>
+        <Box sx={{ ...props.sx }}>
           {alertMessage != null ? <Alert severity="error" sx={{ py: 0 }}>{alertMessage}</Alert> : null}
           <LoginField
             sx={{
@@ -50,15 +51,15 @@ const Login = (props: BoxProps) => {
             size="small"
             label="Username"
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
           />
-          <Button className={styles.loginButton} sx={{ color: 'white' }} variant="outlined" onClick={onLogin}>
+          <Button className={styles.loginButton} sx={{ mr: 1, color: 'white' }} variant="outlined" onClick={onLogin}>
             Login
           </Button>
         </Box>
         :
-        <Box sx={{ ...props.sx, ml: "auto", display: "flex", flexDirection: "row" }}>
-          <Button className={styles.loginButton} color="error" variant="outlined" onClick={onLogout}>
+        <Box sx={{ ...props.sx }}>
+          <Button sx={{ mx: 1 }} className={styles.loginButton} color="error" variant="outlined" onClick={onLogout}>
             Logout
           </Button>
         </Box>
