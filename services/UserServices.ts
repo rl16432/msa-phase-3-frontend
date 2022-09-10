@@ -1,6 +1,7 @@
 import axios from "axios"
 import { Pokemon, User } from "../models/UserModels"
-const BASE_URL = "https://localhost:7246"
+
+const BASE_URL = process.env.POKETEAM_API_BASE_URI
 
 const getAllUsers = (): Promise<User[]> => {
   return axios
@@ -9,6 +10,7 @@ const getAllUsers = (): Promise<User[]> => {
 }
 
 const getUserPokemon = async (userName: string): Promise<User> => {
+  console.log(BASE_URL)
   return axios
     .get(
       `${BASE_URL}/user/${userName}`

@@ -92,8 +92,8 @@ const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
 }
 const Home: NextPage = () => {
   const [user, setUser] = useState<User>()
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
-
+  
+  console.log(process.env.POKETEAM_API_BASE_URI)
   useEffect(() => {
     pokemonServices.getUserPokemon("Brock").then(res => {
       setUser(res)
