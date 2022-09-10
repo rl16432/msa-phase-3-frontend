@@ -12,7 +12,7 @@ export type Pokemon = {
 }
 
 export type User = {
-  userId: number
+  id: number
   userName: string
   pokemon: Pokemon[]
 }

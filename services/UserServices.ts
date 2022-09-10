@@ -1,16 +1,15 @@
 import axios from "axios"
 import { Pokemon, User } from "../models/UserModels"
 
-const BASE_URL = process.env.POKETEAM_API_BASE_URI
+const BASE_URL = process.env.NEXT_PUBLIC_POKETEAM_API_BASE_URI  // "https://localhost:7246" 
 
-const getAllUsers = (): Promise<User[]> => {
-  return axios
+const getAllUsers = async (): Promise<User[]> => {
+  return await axios
     .get(`${BASE_URL}/user`)
     .then(res => res.data)
 }
 
-const getUserPokemon = async (userName: string): Promise<User> => {
-  console.log(BASE_URL)
+const getUserPokemon = (userName: string): Promise<User> => {
   return axios
     .get(
       `${BASE_URL}/user/${userName}`
@@ -18,8 +17,16 @@ const getUserPokemon = async (userName: string): Promise<User> => {
     .then(res => res.data)
 }
 
-const addUserPokemon = (userId: number, pokemonName: string) => {
+const createUser = (userName: string) => {
   return axios
+    .post(
+      `${BASE_URL}/user/${userName}`,
+      { userName: userName }
+    )
+    .then(res => res.data)
+}
+const addUserPokemon = async (userId: number, pokemonName: string) => {
+  return await axios
     .put(
       `${BASE_URL}/user/${userId}/pokemon`,
       null,
@@ -27,8 +34,8 @@ const addUserPokemon = (userId: number, pokemonName: string) => {
     ).then(res => res.data)
 }
 
-const deleteUserPokemon = (userId: number, pokemonName: string) => {
-  return axios
+const deleteUserPokemon = async (userId: number, pokemonName: string) => {
+  return await axios
     .delete(
       `${BASE_URL}/user/${userId}/pokemon`,
       { params: { pokemon: pokemonName } }
@@ -38,6 +45,7 @@ const deleteUserPokemon = (userId: number, pokemonName: string) => {
 const exports = {
   getAllUsers,
   getUserPokemon,
+  createUser,
   addUserPokemon,
   deleteUserPokemon
 }

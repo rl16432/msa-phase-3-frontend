@@ -45,71 +45,26 @@ const Pokemon = ({ pokemon }: PokemonCardProps): JSX.Element => {
   )
 }
 
-const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
-  return (
-    <div>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Accordion 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion>
-    </div>
-  )
-}
 const Home: NextPage = () => {
   const [user, setUser] = useState<User>()
-  
-  console.log(process.env.POKETEAM_API_BASE_URI)
+
   useEffect(() => {
     pokemonServices.getUserPokemon("Brock").then(res => {
       setUser(res)
     })
   }, [])
 
-  return (<>
-    <Navbar />
-    <Container sx={{ my: 3 }}>
-      {user?.pokemon.map(poke => {
-        return (
-          <Pokemon key={poke.pokemonNo} pokemon={poke} />
-        )
-      })}
-    </Container>
-  </>
+  return (
+    <>
+      <Navbar />
+      <Container sx={{ my: 3 }}>
+        {user?.pokemon.map(poke => {
+          return (
+            <Pokemon key={poke.pokemonNo} pokemon={poke} />
+          )
+        })}
+      </Container>
+    </>
   )
 }
 

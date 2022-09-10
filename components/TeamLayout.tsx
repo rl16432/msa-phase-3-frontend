@@ -32,20 +32,24 @@ const TeamLayout = ({ readOnly, userName, pokemons }: TeamLayoutProps) => {
   }
 
   const handleAddPokemon = () => {
+    
     if (userTeam != null && newPokemon !== "") {
       setLoading(true)
-      userService.addUserPokemon(userTeam?.userId, newPokemon)
+      userService.addUserPokemon(userTeam?.id, newPokemon)
         .then((res) => {
           userService.getUserPokemon(userTeam.userName)
             .then(res => {
               dispatch(setUserTeam(res))
-              displayAlert("success", "Pokemon added")
               setLoading(false)
+              displayAlert("success", "Pokemon added")
+            })
+            .catch(err => {
+              displayAlert("error", "Internal Server Error")
             })
         })
         .catch(err => {
-          displayAlert("error", err.response.data)
           setLoading(false)
+          displayAlert("error", err?.response?.data)
         })
     }
   }

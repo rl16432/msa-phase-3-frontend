@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
-import { useTheme, SxProps, ListItemIcon, Modal, Typography, Grid, CardMedia } from '@mui/material';
+import { SxProps, ListItemIcon, Modal, Typography, Grid, CardMedia } from '@mui/material';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { User } from '../models/UserModels';
 
@@ -29,7 +29,7 @@ const TrainerList = (props: BoxProps) => {
       .catch(err => {
         console.error(err)
       })
-  }, [open])
+  }, [])
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,7 +49,7 @@ const TrainerList = (props: BoxProps) => {
           <ListItem style={style} key={index} component="div" disablePadding>
             <ListItemButton onClick={() => {
               setSelected(data[index]);
-              handleOpen();
+              setOpen(true);
             }}>
               <ListItemIcon>
                 <CatchingPokemonIcon />

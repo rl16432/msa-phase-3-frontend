@@ -3,7 +3,7 @@ import React, { useState, ChangeEvent } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUserTeam, setUserTeam } from "./loginSlice"
 import userService from '../../services/UserServices'
-import styles from '../../styles/Login.module.scss'
+import styles from '../../styles/Login.module.css'
 import LoginField from "./LoginField"
 
 const Login = (props: BoxProps) => {
@@ -19,9 +19,9 @@ const Login = (props: BoxProps) => {
     }, 2000)
   }
 
-  const onLogin = async () => {
+  const onLogin = () => {
     if (userName != '') {
-      await userService.getUserPokemon(userName)
+      userService.getUserPokemon(userName)
         .then(res => {
           dispatch(setUserTeam(res))
           setUserName('')

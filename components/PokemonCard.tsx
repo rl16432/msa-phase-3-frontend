@@ -38,7 +38,7 @@ const PokemonCard = ({ readOnly, userName, pokemon }: PokemonCardProps): JSX.Ele
 
   const handleRemove = () => {
     if (userTeam != null) {
-      userServices.deleteUserPokemon(userTeam?.userId, pokemon.name)
+      userServices.deleteUserPokemon(userTeam?.id, pokemon.name)
         .then(res => {
           dispatch(setUserTeam({ ...userTeam, pokemon: userTeam.pokemon.filter(p => p.name !== pokemon.name) }))
         })
