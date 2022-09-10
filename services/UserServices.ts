@@ -2,6 +2,9 @@ import axios from "axios"
 import { Pokemon, User } from "../models/UserModels"
 
 const BASE_URL = process.env.NEXT_PUBLIC_POKETEAM_API_BASE_URI // "https://localhost:7246"
+interface createUserDTO {
+  userName: string
+}
 
 const getAllUsers = async (): Promise<User[]> => {
   return await axios
@@ -18,13 +21,23 @@ const getUserPokemon = (userName: string): Promise<User> => {
 }
 
 const createUser = (userName: string) => {
+  const newUser: createUserDTO = {
+    userName: userName
+  }
+  console.log(JSON.stringify(newUser))
   return axios
     .post(
       `${BASE_URL}/user`,
-      { userName: userName }
+      JSON.stringify(newUser),
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
     )
     .then(res => res.data)
 }
+
 const addUserPokemon = async (userId: number, pokemonName: string) => {
   return await axios
     .put(

@@ -1,4 +1,5 @@
-import { Button, BoxProps, Typography, Alert, Box } from "@mui/material"
+import { Button, BoxProps, Alert, Box, IconButton } from "@mui/material"
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import React, { useState, ChangeEvent } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUserTeam, setUserTeam } from "./loginSlice"
@@ -38,6 +39,7 @@ const Login = (props: BoxProps) => {
   }
 
   const onRegister = () => {
+
     if (registerName != '') {
       userService.createUser(registerName)
         .then(res => {
@@ -79,26 +81,36 @@ const Login = (props: BoxProps) => {
                 Register
               </Button>
             </Box>
-            :
-            <Box sx={{ ...props.sx }}>
-              {alertMessage != null ? <Alert severity="error" sx={{ py: 0 }}>{alertMessage}</Alert> : null}
-              <LoginField
-                sx={{
-                  mx: 1,
-                  display: "flex"
-                }}
-                size="small"
-                label="Username"
-                value={(loginOrRegister === true) ? userName : registerName}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  (loginOrRegister === true) ? setUserName(e.target.value) : setRegisterName(e.target.value)
-                }}
-              />
-              <Button className={styles.loginButton} sx={{ mr: 1, color: 'white' }}
-                variant="outlined" onClick={(loginOrRegister === true) ? onLogin : onRegister}>
-                {(loginOrRegister === true) ? "Login" : "Register"}
-              </Button>
-            </Box>
+            : <>
+              {alertMessage != null
+                ? <Alert severity="error" sx={{ py: 0, mx: 2, display: { md: "none" } }}>{alertMessage}</Alert>
+                : null}
+              <Box sx={{ ...props.sx }}>
+                {alertMessage != null
+                  ?
+                  <Alert severity="error" sx={{ py: 0, ml:"auto", display: { xs: "none", md: "flex" } }}>{alertMessage}</Alert>
+                  : null}
+                <IconButton size="small" onClick={() => setShowForm(false)}>
+                  <ArrowBackIosNewIcon sx={{ color: "white" }} />
+                </IconButton>
+                <LoginField
+                  sx={{
+                    mx: 1,
+                    display: "flex"
+                  }}
+                  size="small"
+                  label="Username"
+                  value={(loginOrRegister === true) ? userName : registerName}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    (loginOrRegister === true) ? setUserName(e.target.value) : setRegisterName(e.target.value)
+                  }}
+                />
+                <Button className={styles.loginButton} sx={{ mr: 1, color: 'white' }}
+                  variant="outlined" onClick={(loginOrRegister === true) ? onLogin : onRegister}>
+                  {(loginOrRegister === true) ? "Login" : "Register"}
+                </Button>
+              </Box>
+            </>
           }
         </>
         :

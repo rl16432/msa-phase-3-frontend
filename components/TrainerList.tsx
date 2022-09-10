@@ -86,8 +86,6 @@ const TrainerList = (props: BoxProps) => {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
           {selected != null && selected?.pokemon.length > 0
@@ -98,6 +96,7 @@ const TrainerList = (props: BoxProps) => {
                   <Box
                     component="img"
                     sx={{
+                      ml: 1,
                       maxWidth: {
                         xs: 150,
                         sm: 200,
