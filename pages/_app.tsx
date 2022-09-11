@@ -1,8 +1,8 @@
-import '../styles/globals.scss'
-import type { AppProps } from 'next/app'
-import { Provider } from 'react-redux'
-import store from '../store/UserStore'
-import React from 'react'
+import type { AppProps } from "next/app";
+import React from "react";
+import { Provider } from "react-redux";
+import store from "../store/UserStore";
+import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </Provider>
     </React.StrictMode>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

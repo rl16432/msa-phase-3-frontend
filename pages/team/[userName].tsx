@@ -1,49 +1,50 @@
-import { useRouter } from 'next/router'
-import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { selectUserTeam, setUserTeam } from '../../components/Login/loginSlice'
-import Navbar from '../../components/Navbar/Navbar'
-import { Container, Typography } from "@mui/material"
-import TeamLayout from '../../components/TeamLayout'
-import userService from '../../services/UserServices'
-import { User } from '../../models/UserModels'
+import { Container } from "@mui/material";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserTeam } from "../../components/Login/loginSlice";
+import Navbar from "../../components/Navbar/Navbar";
+import TeamLayout from "../../components/TeamLayout";
+import { User } from "../../models/UserModels";
+import userService from "../../services/UserServices";
 
 const PokemonTeam = () => {
-  const router = useRouter()
-  const { userName } = router.query
-  // const dispatch = useDispatch()
-  const loggedInUserTeam = useSelector(selectUserTeam)
-  const readOnly = userName !== loggedInUserTeam?.userName
-  const [routeUserTeam, setRouteUserTeam] = useState<User>()
+  const router = useRouter();
+  const { userName } = router.query;
+  const loggedInUserTeam = useSelector(selectUserTeam);
+  const readOnly = userName !== loggedInUserTeam?.userName;
+  const [routeUserTeam, setRouteUserTeam] = useState<User>();
 
   useEffect(() => {
     if (typeof userName === "string") {
-      userService.getUserPokemon(userName)
-        .then(res => {
-          setRouteUserTeam(res)
+      userService
+        .getUserPokemon(userName)
+        .then((res) => {
+          setRouteUserTeam(res);
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [userName, loggedInUserTeam])
+  }, [userName, loggedInUserTeam]);
 
   return (
     <>
       <Navbar />
       <Container sx={{ my: 3 }}>
-        {routeUserTeam != null
-          ?
-          <TeamLayout readOnly={readOnly}
-            userName={userName?.toString() || ""}
-            pokemons={readOnly === true ? routeUserTeam?.pokemon : loggedInUserTeam?.pokemon}
+        {routeUserTeam != null ? (
+          <TeamLayout
+            readOnly={readOnly}
+            pokemons={
+              readOnly === true
+                ? routeUserTeam?.pokemon
+                : loggedInUserTeam?.pokemon
+            }
           />
-          :
-          null
-        }
+        ) : null}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default PokemonTeam
+export default PokemonTeam;

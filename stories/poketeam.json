@@ -1,0 +1,102 @@
+[
+  { "id": 1, "userName": "Ash", "pokemon": [] },
+  { "id": 2, "userName": "Misty", "pokemon": [] },
+  {
+    "id": 3,
+    "userName": "Brock",
+    "pokemon": [
+      {
+        "id": 10,
+        "pokemonNo": 486,
+        "name": "Regigigas",
+        "hp": 110,
+        "attack": 160,
+        "defense": 110,
+        "specialAttack": 80,
+        "specialDefense": 110,
+        "speed": 100,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/486.png"
+      },
+      {
+        "id": 11,
+        "pokemonNo": 251,
+        "name": "Celebi",
+        "hp": 100,
+        "attack": 100,
+        "defense": 100,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 100,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/251.png"
+      },
+      {
+        "id": 12,
+        "pokemonNo": 10007,
+        "name": "Giratina-origin",
+        "hp": 150,
+        "attack": 120,
+        "defense": 100,
+        "specialAttack": 120,
+        "specialDefense": 100,
+        "speed": 90,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10007.png"
+      },
+      {
+        "id": 13,
+        "pokemonNo": 7,
+        "name": "Squirtle",
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "specialAttack": 50,
+        "specialDefense": 64,
+        "speed": 43,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+      },
+      {
+        "id": 14,
+        "pokemonNo": 9,
+        "name": "Blastoise",
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "specialAttack": 85,
+        "specialDefense": 105,
+        "speed": 78,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
+      },
+      {
+        "id": 15,
+        "pokemonNo": 730,
+        "name": "Primarina",
+        "hp": 80,
+        "attack": 74,
+        "defense": 74,
+        "specialAttack": 126,
+        "specialDefense": 116,
+        "speed": 60,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/730.png"
+      }
+    ]
+  },
+  { "id": 4, "userName": "Cynthia", "pokemon": [] },
+  { "id": 5, "userName": "Ghetsis", "pokemon": [] },
+  {
+    "id": 6,
+    "userName": "Cyrus",
+    "pokemon": [
+      {
+        "id": 16,
+        "pokemonNo": 56,
+        "name": "Mankey",
+        "hp": 40,
+        "attack": 80,
+        "defense": 35,
+        "specialAttack": 35,
+        "specialDefense": 45,
+        "speed": 70,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/56.png"
+      }
+    ]
+  }
+]

@@ -1,10 +1,10 @@
-import { styled } from "@mui/material/styles"
-import { Menu } from "@mui/material"
+import { Menu } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const NavbarMenu = styled(Menu)({
-  '& .MuiPaper-root': {
-    backgroundColor: '#cc0000',
+  "& .MuiPaper-root": {
+    backgroundColor: "#cc0000",
   },
 });
 
-export default NavbarMenu
+export default NavbarMenu;

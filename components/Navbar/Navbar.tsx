@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import Login from '../Login/Login';
-import Link from 'next/link';
-import NavbarMenu from './NavbarMenu';
-import { selectUserTeam } from '../Login/loginSlice';
-import { useSelector } from 'react-redux'
-import { SxProps } from '@mui/material';
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import MenuIcon from "@mui/icons-material/Menu";
+import { SxProps } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Login from "../Login/Login";
+import { selectUserTeam } from "../Login/loginSlice";
+import NavbarMenu from "./NavbarMenu";
 
 const Navbar = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
-  const userTeam = useSelector(selectUserTeam)
+  const userTeam = useSelector(selectUserTeam);
 
   const navLinkStyle: SxProps = {
     my: 2,
     alignContent: "center",
     justifyContent: "center",
     flexDirection: "column",
-    color: 'white',
-    display: 'flex'
-  }
+    color: "white",
+    display: "flex",
+  };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -47,7 +47,9 @@ const Navbar = (): JSX.Element => {
     <AppBar sx={{ backgroundColor: "#cc0000" }} position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CatchingPokemonIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <CatchingPokemonIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Link href="/" passHref>
             <Typography
               variant="h6"
@@ -55,18 +57,18 @@ const Navbar = (): JSX.Element => {
               component="a"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: '.1rem',
-                color: 'inherit',
-                textDecoration: 'none',
+                letterSpacing: ".1rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
             >
               PokeTeam
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -81,37 +83,41 @@ const Navbar = (): JSX.Element => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
-              {userTeam != null
-                ?
+              {userTeam != null ? (
                 <Link href={`/team/${userTeam?.userName}`} passHref>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" color="white">My Team</Typography>
+                    <Typography textAlign="center" color="white">
+                      My Team
+                    </Typography>
                   </MenuItem>
                 </Link>
-                : null
-              }
+              ) : null}
               <Link href={`/trainers`} passHref>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" color="white">Trainers</Typography>
+                  <Typography textAlign="center" color="white">
+                    Trainers
+                  </Typography>
                 </MenuItem>
               </Link>
             </NavbarMenu>
           </Box>
-          <CatchingPokemonIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <CatchingPokemonIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Link href="/" passHref>
             <Typography
               variant="h5"
@@ -119,51 +125,49 @@ const Navbar = (): JSX.Element => {
               component="a"
               sx={{
                 mr: 2,
-                display: { xs: 'flex', md: 'none' },
+                display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: 'monospace',
+                fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: '.1rem',
-                color: 'inherit',
-                textDecoration: 'none',
+                letterSpacing: ".1rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
             >
               PokeTeam
             </Typography>
           </Link>
-          <Box sx={{
-            flexGrow: 1, display: { xs: 'none', md: 'flex' },
-            justifyContent: "center", alignItems: "middle"
-          }}>
-            {userTeam != null
-              ?
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              alignItems: "middle",
+            }}
+          >
+            {userTeam != null ? (
               <Link href={`/team/${userTeam?.userName}`} passHref>
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={navLinkStyle}
-                >
+                <Button onClick={handleCloseNavMenu} sx={navLinkStyle}>
                   My Team
                 </Button>
               </Link>
-              : null
-            }
+            ) : null}
             <Link href={`/trainers`} passHref>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={navLinkStyle}
-              >
+              <Button onClick={handleCloseNavMenu} sx={navLinkStyle}>
                 Trainers
               </Button>
             </Link>
-            <Login sx={{
-              ml: "auto",
-              display: "flex",
-              flexDirection: "row",
-              my: 2,
-              mr: 2
-            }} />
+            <Login
+              sx={{
+                ml: "auto",
+                display: "flex",
+                flexDirection: "row",
+                my: 2,
+                mr: 2,
+              }}
+            />
           </Box>
-          <Box sx={{ flexGrow: 0, display: {md: "none"} }}>
+          <Box sx={{ flexGrow: 0, display: { md: "none" } }}>
             <Tooltip title="Login">
               <IconButton onClick={handleToggleLoginMenu} sx={{ p: 0 }}>
                 <AccountCircle sx={{ color: "white" }} />
@@ -172,14 +176,17 @@ const Navbar = (): JSX.Element => {
           </Box>
         </Toolbar>
       </Container>
-      <Login sx={{
-        display: { xs: loginVisible === true ? "flex" : "none", md: "none" },
-        flexDirection: "row",
-        justifyContent: "center",
-        mx: 1,
-        my: 2
-      }} />
+      <Login
+        sx={{
+          display: { xs: loginVisible === true ? "flex" : "none", md: "none" },
+          flexDirection: "row",
+          justifyContent: "center",
+          mx: 1,
+          my: 2,
+        }}
+      />
     </AppBar>
   );
 };
+
 export default Navbar;

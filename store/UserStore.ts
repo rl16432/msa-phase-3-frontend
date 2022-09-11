@@ -1,6 +1,5 @@
-import { configureStore, ThunkAction, Action, applyMiddleware } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { loginSlice } from "../components/Login/loginSlice";
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 const makeStore = () =>
   configureStore({
