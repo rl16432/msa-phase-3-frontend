@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import pokeTeam from "./poketeam.json";
 
+import { fireEvent, userEvent, within } from "@storybook/testing-library";
 import TrainerList from "../components/TrainerList";
 
 export default {
@@ -21,3 +22,11 @@ const Template: ComponentStory<typeof TrainerList> = ({ trainers }) => {
 
 export const Primary = Template.bind({});
 Primary.args = { trainers: pokeTeam };
+
+Primary.play = async ({ args, canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  await userEvent.click(canvas.getByText("Brock"));
+
+  await fireEvent.click(document.querySelector(".MuiBackdrop-root")!);
+};

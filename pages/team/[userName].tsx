@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -30,6 +31,9 @@ const PokemonTeam = () => {
 
   return (
     <>
+      <Head>
+        <title>{userName}&apos;s team</title>
+      </Head>
       <Navbar />
       <Container sx={{ my: 3 }}>
         {routeUserTeam != null ? (

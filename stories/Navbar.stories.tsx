@@ -24,4 +24,16 @@ const Template: ComponentStory<typeof Navbar> = () => {
   );
 };
 
-export const Primary = Template.bind({});
+export const Mobile = Template.bind({});
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphone6",
+  },
+};
+
+export const LargeScreen = Template.bind({});
+LargeScreen.parameters = {
+  viewport: {
+    defaultViewport: "ipad12p",
+  },
+};

@@ -96,6 +96,30 @@
         "specialDefense": 45,
         "speed": 70,
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/56.png"
+      },
+      {
+        "id": 17,
+        "pokemonNo": 730,
+        "name": "Primarina",
+        "hp": 80,
+        "attack": 74,
+        "defense": 74,
+        "specialAttack": 126,
+        "specialDefense": 116,
+        "speed": 60,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/730.png"
+      },
+      {
+        "id": 18,
+        "pokemonNo": 251,
+        "name": "Celebi",
+        "hp": 100,
+        "attack": 100,
+        "defense": 100,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 100,
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/251.png"
       }
     ]
   }

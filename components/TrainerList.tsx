@@ -4,11 +4,13 @@ import Box from "@mui/material/Box";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { action } from "@storybook/addon-actions";
 import { useState } from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { User } from "../models/UserModels";
 import TeamModal from "./TeamModal";
+
 interface AutoSizerProps {
   height: number;
   width: number;
@@ -24,6 +26,7 @@ const TrainerList = (listProps: TrainerListProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
+    action("closeModal")();
     setOpen(false);
     setSelected(undefined);
   };
@@ -37,6 +40,7 @@ const TrainerList = (listProps: TrainerListProps) => {
           <ListItem style={style} key={index} component="div" disablePadding>
             <ListItemButton
               onClick={() => {
+                action("selectUser")();
                 setSelected(data[index]);
                 setOpen(true);
               }}
@@ -75,7 +79,12 @@ const TrainerList = (listProps: TrainerListProps) => {
           )}
         </AutoSizer>
       </Box>
-      <TeamModal user={selected} isOpen={open} handleClose={handleClose} />
+      <TeamModal
+        data-testid="modal"
+        user={selected}
+        isOpen={open}
+        handleClose={handleClose}
+      />
     </>
   );
 };

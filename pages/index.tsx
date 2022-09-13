@@ -13,6 +13,7 @@ import {
 } from "@mui/material/";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { Pokemon } from "../models/UserModels";
@@ -62,6 +63,9 @@ const Home: NextPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        <title>PokeTeam</title>
+      </Head>
       <Navbar />
       <Container sx={{ my: 3, py: 2, px: 0 }}>
         <Typography sx={{ textAlign: "center", my: 3 }} variant="h4">
@@ -72,7 +76,12 @@ const Home: NextPage = () => {
           Create your team
         </Typography>
         <Box
-          sx={{ display: "block", mx: "auto", my: 3, width: {xs: "100%", md: "80%"} }}
+          sx={{
+            display: "block",
+            mx: "auto",
+            my: 3,
+            width: { xs: "100%", md: "80%" },
+          }}
           component="img"
           src="/create_team.png"
           alt="Create team page"
@@ -82,7 +91,12 @@ const Home: NextPage = () => {
           Explore trainers
         </Typography>
         <Box
-          sx={{ display: "block", mx: "auto", mt: 3, width: {xs: "100%", md: "80%"}}}
+          sx={{
+            display: "block",
+            mx: "auto",
+            mt: 3,
+            width: { xs: "100%", md: "80%" },
+          }}
           component="img"
           src="/explore_trainers.png"
           alt="Explore trainers page"

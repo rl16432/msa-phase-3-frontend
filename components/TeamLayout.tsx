@@ -106,9 +106,9 @@ const TeamLayout = ({ readOnly, pokemons }: TeamLayoutProps) => {
             </Box>
           </>
         ) : null}
-        <Grid container sx={{ display: "flex", flexWrap: "wrap" }} spacing={2}>
+        <Grid container spacing={{ xs: 0, md: 2 }}>
           {pokemons.map((pokemon, idx) => (
-            <Grid item key={pokemon.id} sx={{ flex: 1 }} xs={12} md={6} lg={4}>
+            <Grid item key={pokemon.id} xs={12} md={6} lg={4}>
               <PokemonCard readOnly={readOnly} pokemon={pokemon} />
             </Grid>
           ))}

@@ -28,6 +28,8 @@ const Login = (props: LoginProps) => {
   // Whether to show the register/login buttons or the forms
   const [showForm, setShowForm] = useState<boolean>(false);
   const [loginOrRegister, setLoginOrRegister] = useState<boolean>(true);
+  // Login/register is loading
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Hack to hide controls before the initial render
   const [mounted, setMounted] = useState<boolean>(false);
@@ -66,15 +68,18 @@ const Login = (props: LoginProps) => {
     action("attemptLogin")(e);
 
     if (userName != "") {
+      setLoading(true);
       userService
         .getUserPokemon(userName)
         .then((res) => {
           dispatch(setUserTeam(res));
           setUserName("");
+          setLoading(false);
         })
         .catch((err) => {
           displayAlert("Invalid username");
           console.log(err);
+          setLoading(false);
         });
     }
   };

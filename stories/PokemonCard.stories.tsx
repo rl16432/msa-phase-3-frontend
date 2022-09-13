@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import store from "../store/UserStore";
 import pokeTeam from "./poketeam.json";
 
+import { expect } from "@storybook/jest";
 import { userEvent, within } from "@storybook/testing-library";
 import { Provider } from "react-redux";
 import PokemonCard from "../components/PokemonCard";
@@ -33,15 +34,44 @@ const Template: ComponentStory<typeof PokemonCard> = ({
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = { readOnly: true, pokemon: pokeTeam[2].pokemon[0] };
+export const Mobile = Template.bind({});
 
-Primary.play = async ({ args, canvasElement }) => {
+Mobile.args = { readOnly: true, pokemon: pokeTeam[2].pokemon[0] };
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphone6",
+  },
+};
+
+Mobile.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
   await userEvent.click(canvas.getByTestId("expand"));
 
-  await userEvent.click(canvas.getByTestId("expand"))
+  // Stats are shown
+  await expect(canvas.getByText(/.*Speed.*/i)).toBeVisible();
 
-  // await expect(canvas.getByText(/.*Speed.*/i)).toBeInTheDocument();
+  await userEvent.click(canvas.getByTestId("expand"));
+
+  // Stats are hidden
+  await expect(canvas.getByText(/.*Speed.*/i)).not.toBeVisible();
+};
+
+export const LargeScreen = Template.bind({});
+
+LargeScreen.args = { readOnly: true, pokemon: pokeTeam[2].pokemon[0] };
+
+LargeScreen.parameters = {
+  viewport: {
+    defaultViewport: "ipad12p",
+  },
+};
+
+LargeScreen.play = async ({ args, canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  await userEvent.hover(canvas.getByTestId("pokemonCard"));
+
+  await userEvent.unhover(canvas.getByTestId("pokemonCard"));
 };

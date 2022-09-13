@@ -22,7 +22,7 @@ export const saveState = (state: any) => {
   }
 };
 
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer: {
       [loginSlice.name]: loginSlice.reducer,
