@@ -1,6 +1,13 @@
 import AddIcon from "@mui/icons-material/Add";
 import { LoadingButton } from "@mui/lab";
-import { Alert, AlertProps, Box, Container, TextField } from "@mui/material";
+import {
+  Alert,
+  AlertProps,
+  Box,
+  Container,
+  Grid,
+  TextField
+} from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pokemon } from "../models/UserModels";
@@ -99,9 +106,13 @@ const TeamLayout = ({ readOnly, pokemons }: TeamLayoutProps) => {
             </Box>
           </>
         ) : null}
-        {pokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} readOnly={readOnly} pokemon={pokemon} />
-        ))}
+        <Grid container sx={{ display: "flex", flexWrap: "wrap" }} spacing={2}>
+          {pokemons.map((pokemon, idx) => (
+            <Grid item key={pokemon.id} sx={{ flex: 1 }} xs={12} md={6} lg={4}>
+              <PokemonCard readOnly={readOnly} pokemon={pokemon} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </>
   );

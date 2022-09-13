@@ -1,7 +1,14 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { Alert, Box, Button, IconButton, SxProps } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  SxProps,
+  Typography
+} from "@mui/material";
 import { action } from "@storybook/addon-actions";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import userService from "../../services/UserServices";
 import styles from "../../styles/Login.module.css";
@@ -22,6 +29,14 @@ const Login = (props: LoginProps) => {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [loginOrRegister, setLoginOrRegister] = useState<boolean>(true);
 
+  // Hack to hide controls before the initial render
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Show controls after the initial render
+    setMounted(true);
+  }, []);
+
   const displayAlert = (message: string) => {
     setAlertMessage(message);
     setTimeout(() => {
@@ -34,6 +49,7 @@ const Login = (props: LoginProps) => {
     setLoginOrRegister(true);
     setShowForm(true);
   };
+
   const onSelectRegister = (e: MouseEvent) => {
     action("selectRegister")(e);
     setLoginOrRegister(false);
@@ -97,7 +113,9 @@ const Login = (props: LoginProps) => {
       {userTeam == null ? (
         <>
           {showForm === false ? (
-            <Box sx={{ ...props.sx }}>
+            <Box
+              sx={{ visibility: mounted ? "visible" : "hidden", ...props.sx }}
+            >
               <Button
                 data-testid="selectLogin"
                 className={styles.loginButton}
@@ -175,6 +193,18 @@ const Login = (props: LoginProps) => {
         </>
       ) : (
         <Box sx={{ ...props.sx }}>
+          <Typography
+            sx={{
+              py: 0,
+              mx: 2,
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            Signed in as {userTeam.userName}
+          </Typography>
+
           <Button
             sx={{ mx: 1 }}
             data-testid="logout"

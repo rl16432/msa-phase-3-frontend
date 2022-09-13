@@ -20,7 +20,7 @@ import { selectUserTeam, setUserTeam } from "./Login/loginSlice";
 
 type PokemonCardProps = {
   readOnly: boolean;
-  pokemon: Pokemon;
+  pokemon?: Pokemon;
 };
 
 const PokemonCard = ({ readOnly, pokemon }: PokemonCardProps): JSX.Element => {
@@ -38,8 +38,8 @@ const PokemonCard = ({ readOnly, pokemon }: PokemonCardProps): JSX.Element => {
     "HP",
     "Attack",
     "Defense",
-    "Special Attack",
-    "Special Defense",
+    "Sp. Atk",
+    "Sp. Def",
     "Speed",
   ];
 
@@ -48,6 +48,9 @@ const PokemonCard = ({ readOnly, pokemon }: PokemonCardProps): JSX.Element => {
   const [expanded, setExpanded] = useState(false);
 
   const handleRemove = () => {
+    if (pokemon == null) {
+      return
+    }
     if (userTeam != null) {
       userServices
         .deleteUserPokemon(userTeam?.id, pokemon.name)

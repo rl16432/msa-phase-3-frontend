@@ -7,11 +7,11 @@ interface createUserDTO {
 }
 
 const getAllUsers = async (): Promise<User[]> => {
-  return await axios.get(`${BASE_URL}/user`).then((res) => res.data);
+  return await axios.get(`${BASE_URL}/trainer`).then((res) => res.data);
 };
 
 const getUserPokemon = (userName: string): Promise<User> => {
-  return axios.get(`${BASE_URL}/user/${userName}`).then((res) => res.data);
+  return axios.get(`${BASE_URL}/trainer/${userName}`).then((res) => res.data);
 };
 
 const createUser = (userName: string) => {
@@ -20,7 +20,7 @@ const createUser = (userName: string) => {
   };
   
   return axios
-    .post(`${BASE_URL}/user`, JSON.stringify(newUser), {
+    .post(`${BASE_URL}/trainer`, JSON.stringify(newUser), {
       headers: {
         "Content-Type": "application/json",
       },
@@ -30,7 +30,7 @@ const createUser = (userName: string) => {
 
 const addUserPokemon = async (userId: number, pokemonName: string) => {
   return await axios
-    .put(`${BASE_URL}/user/${userId}/pokemon`, null, {
+    .put(`${BASE_URL}/trainer/${userId}/pokemon`, null, {
       params: { pokemon: pokemonName },
     })
     .then((res) => res.data);
@@ -38,7 +38,7 @@ const addUserPokemon = async (userId: number, pokemonName: string) => {
 
 const deleteUserPokemon = async (userId: number, pokemonName: string) => {
   return await axios
-    .delete(`${BASE_URL}/user/${userId}/pokemon`, {
+    .delete(`${BASE_URL}/trainer/${userId}/pokemon`, {
       params: { pokemon: pokemonName },
     })
     .then((res) => res.data);
