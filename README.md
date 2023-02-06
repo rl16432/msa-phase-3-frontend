@@ -17,7 +17,7 @@ A frontend for the PokeTeam API. The app allows users to create a team of Pokemo
 
 ### Starting application
 1. Run `npm install` to install packages
-2. Start the backend according to [here](https://github.com/rl16432/msa-phase-3-backend/blob/main/README.md)
+2. Start the backend according to [here](https://github.com/rl16432/poketeam-backend/blob/main/README.md)
 3. Add `.env.local` file to root directory with the following contents
   
     `NEXT_PUBLIC_POKETEAM_API_BASE_URI="https://localhost:7246"`
@@ -31,7 +31,7 @@ A frontend for the PokeTeam API. The app allows users to create a team of Pokemo
 
 ## Dependencies
 
-Dependencies can be viewed [here](https://github.com/rl16432/poketeam-frontend/blob/main/package.json).
+Dependencies can be viewed [here](https://github.com/rl16432/poketeam-frontend/blob/main/package.json)
 
 ## Demo
 
