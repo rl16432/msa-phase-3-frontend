@@ -150,7 +150,6 @@ const PokemonCard = ({ readOnly, pokemon }: PokemonCardProps): JSX.Element => {
           </CardContent>
         )}
       </Box>
-      {/* Show stats in accordion on breakpoint down */}
       <CardContent
         sx={{ display: { xs: "none", [breakpoint]: "block" }, px: 4, pb: 4 }}
       >
@@ -158,6 +157,7 @@ const PokemonCard = ({ readOnly, pokemon }: PokemonCardProps): JSX.Element => {
           {pokemon?.name}
         </Typography>
       </CardContent>
+      {/* Show stats in accordion on breakpoint down */}
       <CardContent
         sx={{ display: { md: "none" } }}
         data-testid="expand"

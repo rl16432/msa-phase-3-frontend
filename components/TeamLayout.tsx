@@ -19,7 +19,6 @@ interface TeamLayoutProps {
   readOnly: boolean;
   pokemons?: Pokemon[];
 }
-
 const TeamLayout = ({ readOnly, pokemons }: TeamLayoutProps) => {
   const [alertMessage, setAlertMessage] = useState<string | null>();
   const [newPokemon, setNewPokemon] = useState<string>("");
@@ -56,7 +55,7 @@ const TeamLayout = ({ readOnly, pokemons }: TeamLayoutProps) => {
         })
         .catch((err) => {
           setLoading(false);
-          displayAlert("error", err?.response?.data);
+          displayAlert("error", err.response.data);
         });
     }
   };
@@ -108,7 +107,7 @@ const TeamLayout = ({ readOnly, pokemons }: TeamLayoutProps) => {
         ) : null}
         <Grid container spacing={{ xs: 0, md: 2 }}>
           {pokemons.map((pokemon, idx) => (
-            <Grid item key={pokemon.id} xs={12} md={6} lg={4}>
+            <Grid item key={pokemon.id} sx={{pt: 0}} xs={12} md={6} lg={4}>
               <PokemonCard readOnly={readOnly} pokemon={pokemon} />
             </Grid>
           ))}

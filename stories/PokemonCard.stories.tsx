@@ -3,7 +3,7 @@ import store from "../store/UserStore";
 import pokeTeam from "./poketeam.json";
 
 import { expect } from "@storybook/jest";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { Provider } from "react-redux";
 import PokemonCard from "../components/PokemonCard";
 
@@ -25,11 +25,6 @@ const Template: ComponentStory<typeof PokemonCard> = ({
   pokemon,
 }) => {
   return (
-    // <div style={{ display: "flex", height: "100vh", flexDirection: "column" }}>
-    //   <Container sx={{ display: "flex", flex: "1 1 auto" }}>
-
-    //   </Container>
-    // </div>
     <PokemonCard readOnly={readOnly} pokemon={pokemon} />
   );
 };
@@ -47,15 +42,15 @@ Mobile.parameters = {
 Mobile.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
-  await userEvent.click(canvas.getByTestId("expand"));
+  await waitFor(() => userEvent.click(canvas.getByTestId("expand")));
 
   // Stats are shown
-  await expect(canvas.getByText(/.*Speed.*/i)).toBeVisible();
+  await waitFor(() => expect(canvas.getByText(/.*Speed.*/i)).toBeVisible());
 
-  await userEvent.click(canvas.getByTestId("expand"));
+  await waitFor(() => userEvent.click(canvas.getByTestId("expand")));
 
   // Stats are hidden
-  await expect(canvas.getByText(/.*Speed.*/i)).not.toBeVisible();
+  await waitFor(() => expect(canvas.getByText(/.*Speed.*/i)).not.toBeVisible());
 };
 
 export const LargeScreen = Template.bind({});
@@ -71,7 +66,13 @@ LargeScreen.parameters = {
 LargeScreen.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
-  await userEvent.hover(canvas.getByTestId("pokemonCard"));
+  await waitFor(() => userEvent.hover(canvas.getByTestId("pokemonCard")));
 
-  await userEvent.unhover(canvas.getByTestId("pokemonCard"));
+  await waitFor(() => expect(canvas.getByTestId("hoverStats")).toBeVisible());
+
+  await waitFor(() => userEvent.unhover(canvas.getByTestId("pokemonCard")));
+
+  await waitFor(() =>
+    expect(canvas.getByTestId("hoverStats")).not.toBeVisible()
+  );
 };
