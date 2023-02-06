@@ -32,7 +32,7 @@ const PokemonTeam = () => {
   return (
     <>
       <Head>
-        <title>{userName}&apos;s team</title>
+        <title>{`${userName}\'s team`}</title>
       </Head>
       <Navbar />
       <Container sx={{ my: 3 }}>
