@@ -12,6 +12,7 @@ import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import userService from "../../services/UserServices";
 import styles from "../../styles/Login.module.css";
+import LoginButton from "./LoginButton";
 import LoginField from "./LoginField";
 import { selectUserTeam, setUserTeam } from "./loginSlice";
 
@@ -78,7 +79,7 @@ const Login = (props: LoginProps) => {
         })
         .catch((err) => {
           displayAlert("Invalid username");
-          console.log(err);
+          console.error(err);
           setLoading(false);
         });
     }
@@ -95,7 +96,7 @@ const Login = (props: LoginProps) => {
           setRegisterName("");
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
           displayAlert(err?.response?.data);
         });
     }
@@ -183,15 +184,15 @@ const Login = (props: LoginProps) => {
                   value={loginOrRegister === true ? userName : registerName}
                   onChange={onUserNameChange}
                 />
-                <Button
+                <LoginButton
                   data-testid="attempt"
-                  className={styles.loginButton}
                   sx={{ mr: 1, color: "white" }}
+                  loading={loading}
                   variant="outlined"
                   onClick={loginOrRegister === true ? onLogin : onRegister}
                 >
                   {loginOrRegister === true ? "Login" : "Register"}
-                </Button>
+                </LoginButton>
               </Box>
             </>
           )}
