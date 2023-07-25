@@ -1,6 +1,10 @@
 # PokeTeam front-end
 
 A frontend for the PokeTeam API. The app allows users to create a team of Pokemon of their choice, and view the teams of other trainers
+
+## Back-end Repo
+https://github.com/rl16432/poketeam-backend
+
 ## Contents
 - [Getting started](#getting-started)
   - [Starting application](#starting-application)
